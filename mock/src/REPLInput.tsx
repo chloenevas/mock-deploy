@@ -63,7 +63,7 @@ export function REPLInput({
     });
 
     // Reset history index and input value after submitting
-    setHistoryIndex(-1);
+    setHistoryIndex(0);
     setValue("");
   };
 

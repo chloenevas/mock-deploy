@@ -28,8 +28,8 @@ export function search(input: string, data: string) {
   if (specificDict == undefined) {
     return "Please Load a File First!";
   }
-  value = specificDict.get(value);
-  if (value == undefined) {
+  var response: string = specificDict.get(value);
+  if (response == undefined) {
     return "value was not found";
   }
 
@@ -42,12 +42,16 @@ export function search(input: string, data: string) {
   //   } catch {}
   // }
 
-  function convertToTable(value: string[][]) {
-    <table>
-      <tr>
-        
-      </tr>
-    </table>
-  }
-  return value;
+  // return convertToTable(response);
+  return response;
+
 }
+//   function convertToTable(value: string[][]) {
+//     <table>
+//         for each (string[] item: value) {
+//         <tr>
+//           item
+//           </tr> 
+//         }
+//     </table>
+//   }

@@ -1,6 +1,8 @@
 import React, { useState, Dispatch, SetStateAction } from "react";
 import { load } from "./loadCSV";
 import { search } from "./searchCSV";
+import { viewTable } from "./viewCSV";
+
 
 export interface InputProps {
   history: string[];
@@ -26,7 +28,7 @@ export class HandlerClass {
 
     if (commandString === "clear") {
       setHistory([]);
-      this.brief = true;
+      this.brief = false;
       scrollHistoryToBottom();
       return;
     }
@@ -39,11 +41,12 @@ export class HandlerClass {
     } else if (commandString === "brief") {
       this.brief = true;
     }
-    var outputResult: string = "";
+    var outputResult: string | string[][] = ""
     if (!this.brief) {
       line = "Command: " + line;
       outputResult = "Output: ";
     }
+
     if (commandString.includes("load_file")) {
       var values = load(commandString);
       outputResult = outputResult + values[0];
@@ -51,26 +54,41 @@ export class HandlerClass {
         this.parseData = values[1];
       }
       var output: string = outputResult;
-      setHistory([...history, line, output]);
+      if (this.brief){
+        setHistory([...history, output]);
+      }else{
+        setHistory([...history, line, output]);
+      }
       scrollHistoryToBottom();
       return;
     }
     if (commandString === "view") {
-      outputResult = outputResult + this.parseData;
-      var output: string = outputResult;
+     // var dataToView = viewTable(this.parseData)
+     // outputResult = outputResult + dataToView;
+      outputResult = outputResult + this.parseData
       console.log(this.parseData)
-      setHistory([...history, line, output]);
+      if (this.brief) {
+        setHistory([...history, outputResult])
+      }
+      else {
+        setHistory([...history, line, outputResult]);
+      }
       scrollHistoryToBottom();
       return;
     }
     if (commandString.split(" ")[0] === "search") {
       var searchValue = search(commandString, this.parseData);
       var output: string = searchValue;
-      setHistory([...history, line, output]);
+      if (this.brief) {
+        setHistory([...history, output])
+      } else {
+        setHistory([...history, line, output]);
+      }
+
       scrollHistoryToBottom();
       return;
     }
-    // if ()
+    //if ()
     setHistory([...history, line]);
     scrollHistoryToBottom();
   }
