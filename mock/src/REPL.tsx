@@ -1,5 +1,4 @@
 import React, { useState, useRef, useEffect } from "react";
-import { handleInput } from "./Handler";
 //import "../styles/main.css";
 import { History } from "./History";
 import { REPLInput } from "./REPLInput";

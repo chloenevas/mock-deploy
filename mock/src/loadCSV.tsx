@@ -1,6 +1,5 @@
 import React, { useState, Dispatch, SetStateAction } from "react";
-import { ControlledInput } from "./ControlledInput";
-import { loadDictionary } from "./constants";
+import { loadDictionary } from "./mockedJson";
 
 export function load(filePath: string) {
   var trimmedPath = filePath.slice(10);

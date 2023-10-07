@@ -1,5 +1,6 @@
 import React, { useState, Dispatch, SetStateAction } from "react";
 import { load } from "./loadCSV";
+import { search } from "./searchCSV";
 
 export interface InputProps {
   history: string[];
@@ -38,25 +39,37 @@ export class HandlerClass {
     } else if (commandString === "brief") {
       this.brief = true;
     }
-
+    var outputResult: string = "";
     if (!this.brief) {
-      var input: string = "Command: " + line;
-      var outputResult: string = "need to do this part";
-      if (commandString.includes("load_file")) {
-        var values = load(commandString);
-        outputResult = values[0];
-        if (values[1] != null) {
-          this.parseData = values[1];
-        }
+      line = "Command: " + line;
+      outputResult = "Output: ";
+    }
+    if (commandString.includes("load_file")) {
+      var values = load(commandString);
+      outputResult = outputResult + values[0];
+      if (values[1] != null) {
+        this.parseData = values[1];
       }
-      if (commandString === "view") {
-        outputResult = this.parseData;
-      }
-      var output: string = "Output: " + outputResult;
-      setHistory([...history, input, output]);
+      var output: string = outputResult;
+      setHistory([...history, line, output]);
       scrollHistoryToBottom();
       return;
     }
+    if (commandString === "view") {
+      outputResult = outputResult + this.parseData;
+      var output: string = outputResult;
+      setHistory([...history, line, output]);
+      scrollHistoryToBottom();
+      return;
+    }
+    if (commandString.split(" ")[0] === "search") {
+      var searchValue = search(commandString, this.parseData);
+      var output: string = searchValue;
+      setHistory([...history, line, output]);
+      scrollHistoryToBottom();
+      return;
+    }
+    // if ()
     setHistory([...history, line]);
     scrollHistoryToBottom();
   }
