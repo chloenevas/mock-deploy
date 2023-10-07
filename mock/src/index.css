@@ -21,7 +21,7 @@ code {
 }
 
 .historySpace {
-  height: 450px; /* Adjust the height as needed */
+  max-height: 450px; /* Adjust the height as needed */
   overflow-y: scroll; /* Add a vertical scrollbar when content overflows */
   border: 1px solid #ccc; /* Optional: Add a border for styling */
 }

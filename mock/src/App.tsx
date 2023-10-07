@@ -1,21 +1,21 @@
-import React from 'react';
+import React from "react";
 import REPL from "./REPL";
 
-import './App.css';
+import "./App.css";
 
 /**
  * Top-level application component. Shows the question prompt, and then
- * loads the Puzzle component within it. 
+ * loads the Puzzle component within it.
  * @returns JSX for the App component
  */
 function App() {
   return (
     <div className="App">
-      <p className="App-header" data-testid="test:header-text">
+      <div className="App-header" data-testid="test:header-text">
         <div id="Title"> WELCOME TO MOCK! </div>
         <div>
           You can enter commands such as load_file, view, and search. The
-          default mode is brief, which returns only the output of your command.
+          default mode is brief, which returns the output of your command.
         </div>
         <div>
           You can switch to verbose mode by typing verbose in the command line.
@@ -23,11 +23,12 @@ function App() {
           at any point by typing brief in the command line. Typing "clear" will
           clear your history and reset the mode to brief.
         </div>
-        <div>
-          To use... load_file: enter load_file &lt;csv-file-path&gt; search:
-          enter search &lt;column&gt; &lt;value&gt;
-        </div>
-      </p>
+        <div>To use load, enter "load_file &lt;csv-file-path&gt;"</div>
+        <div>To use view, enter "view"</div>
+        <div>To use search, enter "search &lt;column&gt;&lt;value&gt;"</div>
+        <div>If you would like to search with no column identifier, type "none"</div>
+        <div>To retrieve a previous search or result, press the up arrow</div>
+      </div>
       <REPL />
     </div>
   );
