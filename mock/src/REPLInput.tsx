@@ -27,7 +27,7 @@ export function REPLInput({
   const [historyIndex, setHistoryIndex] = useState<number>(-1);
   const [currentCommand, setCurrentCommand] = useState<string>("");
 
-//   // useEffect to listen for up and down arrow keys and navigate the history
+  // useEffect to listen for up and down arrow keys and navigate the history
 // useEffect(() => {
 //   const handleKeyUp = (event: KeyboardEvent) => {
 //     if (event.key === "ArrowUp") {
