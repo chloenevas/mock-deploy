@@ -42,7 +42,7 @@ export function search(input: string, data: string) {
   //   } catch {}
   // }
 
-  function convertToTable(value: String) {
+  function convertToTable(value: string[][]) {
     <table>
       <tr>
         

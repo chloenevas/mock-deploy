@@ -58,6 +58,7 @@ export class HandlerClass {
     if (commandString === "view") {
       outputResult = outputResult + this.parseData;
       var output: string = outputResult;
+      console.log(this.parseData)
       setHistory([...history, line, output]);
       scrollHistoryToBottom();
       return;
