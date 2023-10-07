@@ -1,5 +1,4 @@
-import React, { useState, Dispatch, SetStateAction, useEffect } from "react";
-import { KeyboardEvent } from "react";
+import React, { useState, Dispatch, SetStateAction, useEffect, EventHandler } from "react";
 import { ControlledInput } from "./ControlledInput";
 import {
   TEXT_number_1_accessible_name,
@@ -27,22 +26,29 @@ export function REPLInput({
   const [historyIndex, setHistoryIndex] = useState<number>(-1);
   const [currentCommand, setCurrentCommand] = useState<string>("");
 
+  const handleyKeyDown = (event: React.KeyboardEvent, commandString: string) => {
+    if (event.key === "Enter") {
+      handleSubmit(commandString)
+    }
+  }
   // useEffect to listen for up and down arrow keys and navigate the history
-// useEffect(() => {
-//   const handleKeyUp = (event: KeyboardEvent) => {
-//     if (event.key === "ArrowUp") {
-//       navigateHistory("up");
-//     } else if (event.key === "ArrowDown") {
-//       navigateHistory("down");
-//     }
-//   };
+useEffect(() => {
+  const handleKeyUp = (event: KeyboardEvent) => {
+    if (event.key === "ArrowUp") {
+      navigateHistory("up");
+    } else if (event.key === "ArrowDown") {
+      navigateHistory("down");
+    }
+  };
 
-//   window.addEventListener("keyup", handleKeyUp);
+  window.addEventListener("keyup", handleKeyUp);
 
-//   return () => {
-//     window.removeEventListener("keyup", handleKeyUp);
-//   };
-// }, [historyIndex]);
+  return () => {
+    window.removeEventListener("keyup", handleKeyUp);
+  };
+}, [historyIndex]);
+
+
 
 
 const navigateHistory = (direction: "up" | "down") => {
@@ -95,14 +101,7 @@ const navigateHistory = (direction: "up" | "down") => {
               setNotification("Please enter a non-empty text");
             }
           }}
-          // onKeyDown={() => {
-          //   if (value.length !== 0) {
-          //     handleSubmit(value);
-          //   } else {
-          //     setNotification("Please enter a non-empty text");
-          //   }
-          // }}
-          
+         // onKeyDown={handleSubmit(value)}
           aria-label={TEXT_try_button_accessible_name}
         >
           {TEXT_try_button_text}
