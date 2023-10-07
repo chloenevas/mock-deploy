@@ -28,18 +28,26 @@ export function search(input: string, data: string) {
   if (specificDict == undefined) {
     return "Please Load a File First!";
   }
-  if (result == undefined) {
+  value = specificDict.get(value);
+  if (value == undefined) {
     return "value was not found";
   }
 
-  if (header.toLowerCase() == "none") {
-    var result = specificDict.get(value);
-  } else {
-    try {
-      parseInt(header);
-      //  result =
-    } catch {}
-  }
+  // if (header.toLowerCase() == "none") {
+  //   var result = specificDict.get(value);
+  // } else {
+  //   try {
+  //     parseInt(header);
+  //     //  result =
+  //   } catch {}
+  // }
 
-  return result;
+  function convertToTable(value: String) {
+    <table>
+      <tr>
+        
+      </tr>
+    </table>
+  }
+  return value;
 }
