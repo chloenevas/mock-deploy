@@ -3,7 +3,7 @@
 }
 
 .App-header {
-  background-color: #41B3BE;
+  background-color: #41b3be;
   border: dotted;
   border-width: 17px;
   border-color: #358193;
@@ -12,12 +12,14 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
   font-size: 20px;
   color: white;
   font-weight: bold;
+  padding-left: 30px;
+  padding-right: 30px;
+  margin: 0px;
 }
-
 
 #Title {
   font-size: 32px;

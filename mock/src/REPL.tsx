@@ -1,4 +1,5 @@
-import { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
+import { handleInput } from "./Handler";
 //import "../styles/main.css";
 import { History } from "./History";
 import { REPLInput } from "./REPLInput";
@@ -17,18 +18,29 @@ export default function REPL() {
   // CHANGED
   const [history, setHistory] = useState<string[]>([]);
   const [notification, setNotif] = useState("");
+  const historySpaceRef = useRef<HTMLDivElement | null>(null);
   return (
     <div className="repl">
       {/*This is where your REPLHistory might go... You also may choose to add it within your REPLInput 
       component or somewhere else depending on your component organization. What are the pros and cons of each? */}
       {/* CHANGED */}
-      <History history={history} />
+      <div className="historySpace" ref={historySpaceRef}>
+        <History history={history} />
+      </div>
       <hr></hr>
       {/* CHANGED */}
       <REPLInput
         setNotification={setNotif}
         history={history}
         setHistory={setHistory}
+        scrollHistoryToBottom={() => {
+          setTimeout(() => {
+            if (historySpaceRef.current) {
+              historySpaceRef.current.scrollTop =
+                historySpaceRef.current.scrollHeight;
+            }
+          }, 0);
+        }}
       />
       {notification}
     </div>

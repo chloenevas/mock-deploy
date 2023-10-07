@@ -1,46 +1,63 @@
 import React, { useState, Dispatch, SetStateAction } from "react";
-import { ControlledInput } from "./ControlledInput";
-import {
-  TEXT_number_1_accessible_name,
-  TEXT_number_2_accessible_name,
-  TEXT_number_3_accessible_name,
-  TEXT_try_button_accessible_name,
-  TEXT_try_button_text,
-} from "./constants";
+import { load } from "./loadCSV";
 
 export interface InputProps {
   history: string[];
   setHistory: Dispatch<SetStateAction<string[]>>;
   commandString: string;
+  scrollHistoryToBottom: () => void;
 }
-var brief: Boolean = true;
-// You can also mix the interface (as type) with concrete field names, like this:
-export function handleInput({history, setHistory, commandString}: InputProps) {
-  // Remember: let React manage state in your webapp. The current guesses are string fields.
-  // You don't always need the <...> annotation, but I like to include it for clarity.
+export class HandlerClass {
+  brief: Boolean = true;
+  parseData: string = "No Files Have Been Parsed";
+  constructor() {}
 
-  function handler() {
+  // You can also mix the interface (as type) with concrete field names, like this:
+  handleInput({
+    history,
+    setHistory,
+    commandString,
+    scrollHistoryToBottom,
+  }: InputProps) {
+    // Remember: let React manage state in your webapp. The current guesses are string fields.
+    // You don't always need the <...> annotation, but I like to include it for clarity.
     var line: string = commandString;
+
     if (commandString === "clear") {
       setHistory([]);
-      brief = true;
+      this.brief = true;
+      scrollHistoryToBottom();
       return;
     }
 
     if (commandString === "verbose") {
-      brief = false;
+      this.brief = false;
       setHistory([...history, line]);
+      scrollHistoryToBottom();
       return;
     } else if (commandString === "brief") {
-      brief = true;
+      this.brief = true;
     }
 
-    if (!brief) {
+    if (!this.brief) {
       var input: string = "Command: " + line;
-      var output: string = "Output: " + "need to do this part";
+      var outputResult: string = "need to do this part";
+      if (commandString.includes("load_file")) {
+        var values = load(commandString);
+        outputResult = values[0];
+        if (values[1] != null) {
+          this.parseData = values[1];
+        }
+      }
+      if (commandString === "view") {
+        outputResult = this.parseData;
+      }
+      var output: string = "Output: " + outputResult;
       setHistory([...history, input, output]);
+      scrollHistoryToBottom();
       return;
     }
     setHistory([...history, line]);
+    scrollHistoryToBottom();
   }
 }
