@@ -16,5 +16,11 @@ export function History(props: HistoryProps) {
         ))}
       </table>
     </div>
+
+    // <div className="history">
+    //   {props.history.map((command, index) => (
+    //     <div dangerouslySetInnerHTML={{ __html: command }}  />
+    //   ))}
+    // </div>
   );
 }

@@ -10,21 +10,24 @@ export function search(input: string, data: string) {
   );
 
   if (matches !== null) {
-    searchComps = matches;
-  }
-  var header = searchComps[0];
-
-  if (header[0] == '"' && header[header.length - 1] == '"') {
-    header = header.substring(1, header.length - 1);
+    searchComps = matches;    
   }
 
+  var header: string = "";
+  if (searchComps.length == 2) {
+      header = searchComps[0];
+      if (header[0] == '"' && header[header.length - 1] == '"') {
+        header = header.substring(1, header.length - 1);
+      }
+  }
+  else {header = "none"}
+    
   var value = searchComps[1];
   if (value[0] == '"' && value[value.length - 1] == '"') {
     value = value.substring(1, value.length - 1);
   }
 
   var specificDict = mainSearchDict.get(data);
-  console.log(mainSearchDict.get(data));
   if (specificDict == undefined) {
     return "Please Load a File First!";
   }
