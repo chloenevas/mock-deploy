@@ -8,9 +8,13 @@ interface HistoryProps {
 export function History(props: HistoryProps) {
   return (
     <div className="history">
-      {props.history.map((command, index) => (
-        <p>{command}</p>
-      ))}
+      <table>
+        {props.history.map((command, index) => (
+          <tr>
+            <td>{command}</td>
+          </tr>
+        ))}
+      </table>
     </div>
   );
 }

@@ -26,7 +26,9 @@ function App() {
         <div>To use load, enter "load_file &lt;csv-file-path&gt;"</div>
         <div>To use view, enter "view"</div>
         <div>To use search, enter "search &lt;column&gt;&lt;value&gt;"</div>
-        <div>If you would like to search with no column identifier, type "none"</div>
+        <div>
+          If you would like to search with no column identifier, type "none"
+        </div>
         <div>To retrieve a previous search or result, press the up arrow</div>
       </div>
       <REPL />
