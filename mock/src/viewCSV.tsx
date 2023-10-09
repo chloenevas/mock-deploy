@@ -2,19 +2,24 @@ import { match } from "assert";
 import React, { useState, Dispatch, SetStateAction } from "react";
 import { mainSearchDict } from "./mockedJson";
 
-export function viewTable(data: string) {
+export function viewTable(data: string): HTMLTableElement {
 
-    return(
-  <table>for each (string[] item: data) {
+  const table = document.createElement("table");
 
-    <tr>item</tr>
+  table.append("hello");
+  // <table>for each (string[] item: data) {
 
-    }
-    </table>);
+  //   <tr>item</tr>
+
+  //   }
+  //   </table>);
         
-        // <table>
-        //     <tr>
-        //         heyyyy
-        //     </tr>
-        // </table>);
-}
+//         <table>
+//             <tr>
+//                 heyyyy
+//             </tr>
+//         </table>);
+    
+// 
+  return table;
+    }
