@@ -53,7 +53,7 @@ starsRow8.push("71457"," Rigel Kentaurus A"," -0.50362"," -0.42139"," -1.17665")
 starsRow9.push("87666"," Barnard's Star"," -0.01729"," -1.81533"," 0.14824")
 starsRow10.push("118721"," ''"," -2.28262"," 0.64697"," 0.29354")
 
-starsOutput.push(incomeRow1, incomeRow2, incomeRow3, incomeRow4, incomeRow5, incomeRow6, incomeRow7);
+starsOutput.push(starsRow1, starsRow2, starsRow3, starsRow4, starsRow5, starsRow6, starsRow7, starsRow8, starsRow9, starsRow10);
 
 filepathDictionary.set(
   "/Users/chloenevas/Documents/mock-cnevas-rgonza27/mock/src/stars.csv",
@@ -88,13 +88,15 @@ incomeDictionary.set("data type,white", [incomeRow2]);
 starsDictionary.set("3759", [starsRow5])
 
 // 3759 in the first column (0)
-starsDictionary.set("3759", [starsRow5]);
+starsDictionary.set("0,3759", [starsRow5]);
 
 // 0 in any column
 starsDictionary.set("0", [starsRow1]);
 
 // 0 in third column
 starsDictionary.set("2,0", [starsRow1]);
+
+
 
 
 

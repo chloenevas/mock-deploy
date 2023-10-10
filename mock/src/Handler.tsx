@@ -1,17 +1,18 @@
 import React, { useState, Dispatch, SetStateAction } from "react";
 import { load } from "./loadCSV";
 import { search } from "./searchCSV";
-import { viewTable } from "./viewCSV";
 
 
 export interface InputProps {
-  history: string[];
-  setHistory: Dispatch<SetStateAction<string[]>>;
+  history: (string | string[][])[];
+  setHistory: Dispatch<SetStateAction<(string | string[][])[]>>;
   commandString: string;
   scrollHistoryToBottom: () => void;
 }
 export class HandlerClass {
   brief: Boolean = true;
+  // innerList: string[] = ["No Files Have Been Parsed"]
+  //  parseData: string[][] = [this.innerList];
   parseData: string = "No Files Have Been Parsed";
   constructor() {}
 
@@ -41,7 +42,7 @@ export class HandlerClass {
     } else if (commandString === "brief") {
       this.brief = true;
     }
-    var outputResult: string | string[][] = ""
+    var outputResult: string | string[][] = "";
     if (!this.brief) {
       line = "Command: " + line;
       outputResult = "Output: ";
@@ -54,24 +55,22 @@ export class HandlerClass {
         this.parseData = values[1];
       }
       var output: string = outputResult;
-      if (this.brief){
+      if (this.brief) {
         setHistory([...history, output]);
-      }else{
+      } else {
         setHistory([...history, line, output]);
       }
       scrollHistoryToBottom();
       return;
     }
     if (commandString === "view") {
-     // var dataToView = viewTable(this.parseData)
-     // outputResult = outputResult + dataToView;
-      outputResult = outputResult + this.parseData
+      outputResult = outputResult + this.parseData;
+      console.log(outputResult);
       console.log(this.parseData)
       if (this.brief) {
-        setHistory([...history, outputResult])
-      }
-      else {
-        setHistory([...history, line, outputResult]);
+        setHistory([...history, this.parseData]);
+      } else {
+        setHistory([...history, line, this.parseData]);
       }
       scrollHistoryToBottom();
       return;
@@ -80,7 +79,7 @@ export class HandlerClass {
       var searchValue = search(commandString, this.parseData);
       var output: string = searchValue;
       if (this.brief) {
-        setHistory([...history, output])
+        setHistory([...history, output]);
       } else {
         setHistory([...history, line, output]);
       }
