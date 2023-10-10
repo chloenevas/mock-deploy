@@ -11,8 +11,6 @@ export interface InputProps {
 }
 export class HandlerClass {
   brief: Boolean = true;
-  // innerList: string[] = ["No Files Have Been Parsed"]
-  //  parseData: string[][] = [this.innerList];
   parseData: string = "No Files Have Been Parsed";
   constructor() {}
 
@@ -34,14 +32,21 @@ export class HandlerClass {
       return;
     }
 
-    if (commandString === "verbose") {
-      this.brief = false;
-      setHistory([...history, line]);
-      scrollHistoryToBottom();
-      return;
-    } else if (commandString === "brief") {
-      this.brief = true;
+    if (commandString === "mode") {
+      this.brief = !this.brief;
+      if (this.brief == false) {
+         setHistory([...history, line]);
+         scrollHistoryToBottom();
+      }
     }
+    // if (commandString === "verbose") {
+    //   this.brief = false;
+    //   setHistory([...history, line]);
+    //   scrollHistoryToBottom();
+    //   return;
+    // } else if (commandString === "brief") {
+    //   this.brief = true;
+    // }
     var outputResult: string | string[][] = "";
     if (!this.brief) {
       line = "Command: " + line;

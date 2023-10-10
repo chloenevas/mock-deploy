@@ -1,8 +1,6 @@
 //import "../styles/main.css";
 
 interface HistoryProps {
-  // TODO: Fill with some shared state tracking all the pushed commands
-  // CHANGED
   history: (string | string[][])[];
 }
 
@@ -29,11 +27,5 @@ export function History(props: HistoryProps) {
         }
       })}
     </div>
-
-    // <div className="history">
-    //   {props.history.map((command, index) => (
-    //     <div dangerouslySetInnerHTML={{ __html: command }}  />
-    //   ))}
-    // </div>
   );
 }
