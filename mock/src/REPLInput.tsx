@@ -8,8 +8,8 @@ import {
 import { HandlerClass } from "./Handler";
 
 export interface InputProps {
-  history: string[];
-  setHistory: Dispatch<SetStateAction<string[]>>;
+  history: (string | string[][])[];
+  setHistory: Dispatch<SetStateAction<(string | string[][])[]>>;
   setNotification: Dispatch<SetStateAction<string>>;
   scrollHistoryToBottom: () => void;
 }
@@ -22,7 +22,7 @@ export function REPLInput({
   setHistory,
   scrollHistoryToBottom,
 }: InputProps) {
-  const [value, setValue] = useState<string>("");
+  const [value, setValue] = useState("");
   const [historyIndex, setHistoryIndex] = useState<number>(0);
 
   // useEffect to listen for up and down arrow keys and navigate the history
@@ -50,7 +50,7 @@ export function REPLInput({
     }
 
     // Update the current command being displayed
-    setValue(history[history.length - 1 - historyIndex] || "");
+   // setValue(history[history.length - 1 - historyIndex] || "");
   };
 
   const handleSubmit = (event: React.FormEvent) => {

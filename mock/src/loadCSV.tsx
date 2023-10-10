@@ -1,10 +1,12 @@
 import React, { useState, Dispatch, SetStateAction } from "react";
-import { loadDictionary } from "./mockedJson";
+import { filepathDictionary } from "./mockedJson";
 
 export function load(filePath: string) {
   var trimmedPath = filePath.slice(10);
-  console.log(trimmedPath);
-  var value = loadDictionary.get(trimmedPath);
+  console.log(trimmedPath)
+  console.log(filepathDictionary.get(trimmedPath));
+  var value = filepathDictionary.get(trimmedPath);
+  console.log(value);
   if (value !== undefined) {
     return ["success!", value];
   }

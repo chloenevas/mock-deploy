@@ -10,37 +10,38 @@ export function search(input: string, data: string) {
   );
 
   if (matches !== null) {
-    searchComps = matches;
-  }
-  var header = searchComps[0];
-
-  if (header[0] == '"' && header[header.length - 1] == '"') {
-    header = header.substring(1, header.length - 1);
+    searchComps = matches;    
   }
 
-  var value = searchComps[1];
+  var header: string = "";
+  var value = "";
+
+  if (searchComps.length == 2) {
+      header = (searchComps[0]).toLowerCase();
+      if (header[0] == '"' && header[header.length - 1] == '"') {
+        header = (header.substring(1, header.length - 1)).toLowerCase();
+      }
+    header = header + ",";
+    value = searchComps[1].toLowerCase();
+  }
+  else if (searchComps.length == 1) {
+    header = "";
+    value = searchComps[0].toLowerCase();
+  }
   if (value[0] == '"' && value[value.length - 1] == '"') {
     value = value.substring(1, value.length - 1);
   }
 
   var specificDict = mainSearchDict.get(data);
-  console.log(mainSearchDict.get(data));
   if (specificDict == undefined) {
     return "Please Load a File First!";
   }
-  var response: string = specificDict.get(value);
+  var response: string = specificDict.get(header + value);
+  console.log(header + value)
   if (response == undefined) {
     return "value was not found";
   }
 
-  // if (header.toLowerCase() == "none") {
-  //   var result = specificDict.get(value);
-  // } else {
-  //   try {
-  //     parseInt(header);
-  //     //  result =
-  //   } catch {}
-  // }
 
   // return convertToTable(response);
   return response;
