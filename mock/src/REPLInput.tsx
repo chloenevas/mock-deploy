@@ -1,12 +1,15 @@
 import React, { useState, Dispatch, SetStateAction, useEffect } from "react";
 import { ControlledInput } from "./ControlledInput";
 import {
-  TEXT_number_1_accessible_name,
+  TEXT_input_box,
   TEXT_try_button_accessible_name,
   TEXT_try_button_text,
 } from "./constants";
 import { HandlerClass } from "./Handler";
 
+/**
+ * Props for history & scrolling and notification 
+ */
 export interface InputProps {
   history: (string | string[][])[];
   setHistory: Dispatch<SetStateAction<(string | string[][])[]>>;
@@ -16,6 +19,11 @@ export interface InputProps {
 
 var handl = new HandlerClass();
 
+/**
+ * 
+ * @param InputProps that include history, seHistory, setNotification, and scrollHistoryToBottom
+ * @returns the command line box and the submit button
+ */
 export function REPLInput({
   setNotification,
   history,
@@ -68,17 +76,16 @@ export function REPLInput({
   };
 
   return (
-    <div className="new-round">
-      <div className="guess-round-current">
+    <div>
+      <div>
         <form onSubmit={handleSubmit}>
           {" "}
-          {/* Add a form element */}
-          <fieldset className="fieldTerminal">
+          <fieldset>
             <legend>Type your command lines here!</legend>
             <ControlledInput
               value={value}
               setValue={setValue}
-              ariaLabel={TEXT_number_1_accessible_name}
+              ariaLabel={TEXT_input_box}
             />
           </fieldset>
           <div>

@@ -1,11 +1,10 @@
-import React from "react";
 import REPL from "./REPL";
 
 import "./App.css";
 
 /**
- * Top-level application component. Shows the question prompt, and then
- * loads the Puzzle component within it.
+ * Top-level application component. Shows the program description and then 
+ * loads the command-line REPL component
  * @returns JSX for the App component
  */
 function App() {
@@ -18,16 +17,17 @@ function App() {
           default mode is brief, which returns the output of your command.
         </div>
         <div>
-          You can switch to verbose mode by typing verbose in the command line.
+          You can switch to verbose mode by typing "mode" in the command line.
           This will return both your input and your output. Switch back to brief
-          at any point by typing brief in the command line. Typing "clear" will
+          at any point by using the "mode" command. Typing "clear" will
           clear your history and reset the mode to brief.
         </div>
         <div>To use load, enter "load_file &lt;csv-file-path&gt;"</div>
         <div>To use view, enter "view"</div>
         <div>To use search, enter "search &lt;column&gt;&lt;value&gt;"</div>
         <div>
-          If you would like to search with no column identifier, type "none"
+          If you would like to search with no column identifier, simply omit the column identifier and
+          enter only the value you'd like to search for
         </div>
         <div>To retrieve a previous search or result, press the up arrow</div>
       </div>

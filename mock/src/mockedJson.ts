@@ -3,9 +3,8 @@ export const incomeDictionary = new Map<string, string[][]>();
 export const starsDictionary = new Map<string, string[][]>();
 export const mainSearchDict = new Map<string, Map<string, any>>();
 
-// search stars
 
-
+// INCOME CSV SETUP
 var incomeOutput: string[][] = new Array();
 var incomeRow1: string[] = new Array();
 var incomeRow2: string[] = new Array();
@@ -30,6 +29,7 @@ filepathDictionary.set(
   incomeOutput
 );
 
+// STARS CSV SETUP
 var starsOutput: string[][] = new Array();
 var starsRow1: string[] = new Array();
 var starsRow2: string[] = new Array();
@@ -96,10 +96,7 @@ starsDictionary.set("0", [starsRow1]);
 // 0 in third column
 starsDictionary.set("2,0", [starsRow1]);
 
-
-
-
-
+// sets up mainSearchDict which maps the filepath dictionaries to their results
 mainSearchDict.set(filepathDictionary.get("/Users/chloenevas/Documents/mock-cnevas-rgonza27/mock/src/income.csv"),incomeDictionary);
 mainSearchDict.set(
   filepathDictionary.get("/Users/chloenevas/Documents/mock-cnevas-rgonza27/mock/src/stars.csv"),
