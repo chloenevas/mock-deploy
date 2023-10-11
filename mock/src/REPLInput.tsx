@@ -8,30 +8,37 @@ import {
 import { HandlerClass } from "./Handler";
 
 /**
- * Props for history & scrolling and notification 
+ * Props for history & scrolling and notification
  */
 export interface InputProps {
   history: (string | string[][])[];
   setHistory: Dispatch<SetStateAction<(string | string[][])[]>>;
+  queryHistory: string[];
+  setQueryHistory: Dispatch<SetStateAction<string[]>>;
   setNotification: Dispatch<SetStateAction<string>>;
   scrollHistoryToBottom: () => void;
 }
 
+// Create an instance of HandlerClass
 var handl = new HandlerClass();
 
 /**
- * 
- * @param InputProps that include history, seHistory, setNotification, and scrollHistoryToBottom
- * @returns the command line box and the submit button
+ * Represents the REPL input component.
+ *
+ * @param {InputProps} props - The component's props including history, setHistory,
+ * queryHistory, setQueryHistory, setNotification, and scrollHistoryToBottom.
+ * @returns {JSX.Element} - The command line box and submit button.
  */
 export function REPLInput({
-  setNotification,
+  queryHistory,
   history,
   setHistory,
+  setNotification,
+  setQueryHistory,
   scrollHistoryToBottom,
 }: InputProps) {
-  const [value, setValue] = useState("");
-  const [historyIndex, setHistoryIndex] = useState<number>(0);
+  const [value, setValue] = useState(""); // State for the input value
+  const [historyIndex, setHistoryIndex] = useState<number>(-1); // State for history navigation index
 
   // useEffect to listen for up and down arrow keys and navigate the history
   useEffect(() => {
@@ -48,20 +55,36 @@ export function REPLInput({
     return () => {
       window.removeEventListener("keyup", handleKeyUp);
     };
-  }, [historyIndex]);
+  }, [historyIndex, queryHistory]);
 
+  /**
+   * Navigates through the command history.
+   *
+   * @param {"up" | "down"} direction - The direction to navigate (up or down).
+   */
   const navigateHistory = (direction: "up" | "down") => {
-    if (direction === "up" && historyIndex < history.length - 1) {
+    console.log(
+      "historyIndex:" + historyIndex + ". queryLength" + queryHistory.length
+    );
+    if (direction === "up" && historyIndex < queryHistory.length - 1) {
+      console.log("up");
       setHistoryIndex(historyIndex + 1);
     } else if (direction === "down" && historyIndex >= 0) {
+      console.log("down");
       setHistoryIndex(historyIndex - 1);
     }
 
-    // Update the current command being displayed
-   // setValue(history[history.length - 1 - historyIndex] || "");
+    // Update the input value based on the current history item
+    setValue(queryHistory[queryHistory.length - 1 - historyIndex] || "");
   };
 
+  /**
+   * Handles the form submission.
+   *
+   * @param {React.FormEvent} event - The form submission event.
+   */
   const handleSubmit = (event: React.FormEvent) => {
+    setQueryHistory([...queryHistory, value]);
     event.preventDefault(); // Prevent the default form submission
     handl.handleInput({
       history,
@@ -69,9 +92,8 @@ export function REPLInput({
       commandString: value,
       scrollHistoryToBottom,
     });
-
     // Reset history index and input value after submitting
-    setHistoryIndex(0);
+    setHistoryIndex(-1);
     setValue("");
   };
 

@@ -8,11 +8,31 @@ export interface InputProps {
   commandString: string;
   scrollHistoryToBottom: () => void;
 }
+/**
+ * HandlerClass is responsible for handling user input commands in a REPL (Read-Eval-Print Loop) environment.
+ * It can parse, execute, and provide command history in both brief and verbose modes.
+ */
 export class HandlerClass {
+  /**
+   * A boolean flag that represents whether the application is in brief mode (true) or verbose mode (false).
+   */
   brief: Boolean = true;
+  /**
+   * A string that holds information about the parsed data from CSV files, or "No Files Have Been Parsed" by default.
+   */
   parseData: string = "No Files Have Been Parsed";
+  /**
+   * Creates an instance of the HandlerClass.
+   */
   constructor() {}
 
+  /**
+   * Handles the user's input command and manages the application's behavior based on the command.
+   * @param history - An array of strings or string arrays representing the command history.
+   * @param setHistory - A function to set the command history state.
+   * @param commandString - The user's input command string.
+   * @param scrollHistoryToBottom - A function to scroll the history to the bottom.
+   */
   handleInput({
     history,
     setHistory,

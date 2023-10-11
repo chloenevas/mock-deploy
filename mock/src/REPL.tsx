@@ -9,6 +9,7 @@ import { REPLInput } from "./REPLInput";
  */
 export default function REPL() {
   const [history, setHistory] = useState<(string | string[][])[]>([]);
+  const [queryHistory, setQueryHistory] = useState<string[]>([]);
   const [notification, setNotif] = useState("");
   const historySpaceRef = useRef<HTMLDivElement | null>(null);
   return (
@@ -21,6 +22,8 @@ export default function REPL() {
         setNotification={setNotif}
         history={history}
         setHistory={setHistory}
+        queryHistory={queryHistory}
+        setQueryHistory={setQueryHistory}
         scrollHistoryToBottom={() => {
           setTimeout(() => {
             if (historySpaceRef.current) {

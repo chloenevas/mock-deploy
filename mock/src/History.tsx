@@ -8,7 +8,7 @@ interface HistoryProps {
  * Loops through the history to return each element
  * as either a paragraph if it's a string, or an HTML table
  * if it's a list of list of strings
- *  
+ *
  * @param props - HistoryProps that contains the history list
  * @returns - element of history properly formatted
  */

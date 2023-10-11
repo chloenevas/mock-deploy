@@ -4,4 +4,3 @@
 export const TEXT_try_button_accessible_name = "try your sequence";
 export const TEXT_input_box = "enter command";
 export const TEXT_try_button_text = "Submit!";
-

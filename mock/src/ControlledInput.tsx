@@ -1,26 +1,46 @@
-import React, { useState, Dispatch, SetStateAction } from 'react';
+import React, { useState, Dispatch, SetStateAction } from "react";
 
-// Parameter names don't necessarily need to overlap.
-// I could use different variable names in the actual function.
+/**
+ * ControlledInputProps defines the properties required by the ControlledInput component.
+ */
 export interface ControlledInputProps {
-    value: string, 
-    // This type comes from React+TypeScript. VSCode can suggest these.
-    //   Concretely, this means "a function that sets a state containing a string"
-    //   It's OK to just use this type without feeling you understand 100%.
-    setValue: Dispatch<SetStateAction<string>>,
-    ariaLabel: string 
+  /**
+   * The current value of the input field.
+   */
+  value: string;
+  /**
+   * A function to set the state value for the input field.
+   */
+  setValue: Dispatch<SetStateAction<string>>;
+
+  /**
+   * Aria label for accessibility purposes.
+   */
+  ariaLabel: string;
 }
-  
-// Input boxes contain state. We want to make sure React is managing that state,
-//   so we have a special component that wraps the input box.
-export function ControlledInput({value, setValue, ariaLabel}: ControlledInputProps) {
-    return (
-      <input value={value} 
-             onChange={(ev) => setValue(ev.target.value)}
-             aria-label={ariaLabel}
-             size = {120}
-             
-             ></input>
-    );
-  }
-  
+
+/**
+ * ControlledInput is a reusable input component with controlled state.
+ *
+ * This component renders an input field and allows you to control its value and behavior
+ * through props. It's particularly useful for managing form inputs in a React application.
+ *
+ * @param value - The current value of the input field.
+ * @param setValue - A function to set the state value for the input field.
+ * @param ariaLabel - Aria label for accessibility purposes.
+ * @returns A controlled input field.
+ */
+export function ControlledInput({
+  value,
+  setValue,
+  ariaLabel,
+}: ControlledInputProps) {
+  return (
+    <input
+      value={value}
+      onChange={(ev) => setValue(ev.target.value)}
+      aria-label={ariaLabel}
+      size={120}
+    ></input>
+  );
+}
