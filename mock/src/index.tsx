@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import "./index.css";
+import "./Index.css";
 import App from "./App";
 
 // Finds the root element and starts rendering React there.

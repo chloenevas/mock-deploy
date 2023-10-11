@@ -21,10 +21,10 @@ test.beforeEach(() => {
  * you put before parts of your test that might take time to run, 
  * like any interaction with the page.
  */
-test('on page load, i see an input bar', async ({ page }) => {
+test('title is as expected', async ({ page }) => {
   // Notice: http, not https! Our front-end is not set up for HTTPs.
   await page.goto('http://localhost:8000/');
-  await expect(page.getByLabel('Command input')).toBeVisible()
+  await expect(page.getByLabel('WELCOME TO MOCK!')).toBeVisible()
 })
 
 test('after I type into the input box, its text changes', async ({ page }) => {
