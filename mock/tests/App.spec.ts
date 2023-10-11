@@ -1,5 +1,9 @@
-import { test, expect } from '@playwright/test';
-
+import { test, expect } from "@playwright/test";
+import {
+  TEXT_input_box,
+  TEXT_try_button_accessible_name,
+  TEXT_try_button_text,
+} from "../src/constants";
 
 /**
   The general shapes of tests in Playwright Test are:
@@ -11,48 +15,52 @@ import { test, expect } from '@playwright/test';
 
 // If you needed to do something before every test case...
 test.beforeEach(() => {
-    // ... you'd put it here.
-    // TODO: Is there something we need to do before every test case to avoid repeating code?
-  })
+  // ... you'd put it here.
+  // TODO: Is there something we need to do before every test case to avoid repeating code?
+});
 
 /**
  * Don't worry about the "async" yet. We'll cover it in more detail
- * for the next sprint. For now, just think about "await" as something 
- * you put before parts of your test that might take time to run, 
+ * for the next sprint. For now, just think about "await" as something
+ * you put before parts of your test that might take time to run,
  * like any interaction with the page.
  */
-test('title is as expected', async ({ page }) => {
+test("title is as expected", async ({ page }) => {
   // Notice: http, not https! Our front-end is not set up for HTTPs.
-  await page.goto('http://localhost:8000/');
-  await expect(page.getByLabel('WELCOME TO MOCK!')).toBeVisible()
-})
+  await page.goto("http://localhost:8000/");
+  await expect(page).toHaveTitle(/Mock/);
+});
 
-test('after I type into the input box, its text changes', async ({ page }) => {
+test("after I type into the input box, its text changes", async ({ page }) => {
   // Step 1: Navigate to a URL
-  await page.goto('http://localhost:8000/');
+  await page.goto("http://localhost:8000/");
 
   // Step 2: Interact with the page
   // Locate the element you are looking for
-  await page.getByLabel('Command input').click();
-  await page.getByLabel('Command input').fill('Awesome command');
+  await page.getByLabel(TEXT_input_box).click();
+  await page.getByLabel(TEXT_input_box).fill("Awesome command");
 
   // Step 3: Assert something about the page
   // Assertions are done by using the expect() function
-  const mock_input = `Awesome command`
-  await expect(page.getByLabel('Command input')).toHaveValue(mock_input)
+  const mock_input = `Awesome command`;
+  await expect(page.getByLabel(TEXT_input_box)).toHaveValue(mock_input);
 });
 
-test('on page load, i see a button', async ({ page }) => {
+test("on page load, i see a button", async ({ page }) => {
+    await page.goto("http://localhost:8000/");
+    await expect(page.getByRole("button")).toBeVisible();
   // TODO WITH TA: Fill this in!
 });
 
-test('after I click the button, its label increments', async ({ page }) => {
-  // TODO WITH TA: Fill this in to test your button counter functionality!
-  await page.getByLabel("Submit").click();
-  await expect("Clicked 1 times");
+test("button label is as expected", async ({ page }) => {
+  await page.goto("http://localhost:8000/");
+  await expect(page.getByRole("button")).toHaveText("Submit!");
+})
 
-});
 
-test('after I click the button, my command gets pushed', async ({ page }) => {
+test("after I click the button, my command gets pushed", async ({ page }) => {
+  await page.goto("http://localhost:8000/");
+  await page.getByRole("button").click();
+  // finish this
   // TODO: Fill this in to test your button push functionality!
 });
