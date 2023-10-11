@@ -1,4 +1,3 @@
-
 interface HistoryProps {
   history: (string | string[][])[];
 }
@@ -19,17 +18,20 @@ export function History(props: HistoryProps) {
           return <p>{entry}</p>;
         } else {
           return (
+            <div>
+              <p>Output:</p>
               <table>
-              <tbody>
-                {entry.map((row) => (
-                  <tr>
-                    {row.map((item) => (
-                      <td>{item}</td>
-                    ))}
-                  </tr>
-                ))}
-              </tbody>
-            </table>            
+                <tbody>
+                  {entry.map((row) => (
+                    <tr>
+                      {row.map((item) => (
+                        <td>{item}</td>
+                      ))}
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           );
         }
       })}

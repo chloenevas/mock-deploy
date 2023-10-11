@@ -47,21 +47,20 @@ test("after I type into the input box, its text changes", async ({ page }) => {
 });
 
 test("on page load, i see a button", async ({ page }) => {
-    await page.goto("http://localhost:8000/");
-    await expect(page.getByRole("button")).toBeVisible();
+  await page.goto("http://localhost:8000/");
+  await expect(page.getByRole("button")).toBeVisible();
   // TODO WITH TA: Fill this in!
 });
 
 test("button label is as expected", async ({ page }) => {
   await page.goto("http://localhost:8000/");
   await expect(page.getByRole("button")).toHaveText("Submit!");
-})
-
+});
 
 test("after I click the button, my command gets pushed", async ({ page }) => {
   await page.goto("http://localhost:8000/");
   await page.getByRole("button").click();
-  await expect()
+  // await expect()
   // finish this
   // TODO: Fill this in to test your button push functionality!
 });
