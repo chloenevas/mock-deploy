@@ -73,7 +73,7 @@ incomeOutput.push(
 );
 
 filepathDictionary.set(
-  "/Users/chloenevas/Documents/mock-cnevas-rgonza27/mock/src/income.csv",
+  "/Users/chloenevas/Documents/mock-cnevas-rgonza27/mock/src/components/data/income.csv",
   incomeOutput
 );
 
@@ -139,7 +139,7 @@ starsOutput.push(
 );
 
 filepathDictionary.set(
-  "/Users/chloenevas/Documents/mock-cnevas-rgonza27/mock/src/stars.csv",
+  "/Users/chloenevas/Documents/mock-cnevas-rgonza27/mock/src/components/data/stars.csv",
   starsOutput
 );
 
@@ -180,13 +180,13 @@ starsDictionary.set("2,0", [starsRow1]);
 // sets up mainSearchDict which maps the filepath dictionaries to their results
 mainSearchDict.set(
   filepathDictionary.get(
-    "/Users/chloenevas/Documents/mock-cnevas-rgonza27/mock/src/income.csv"
+    "/Users/chloenevas/Documents/mock-cnevas-rgonza27/mock/src/components/data/income.csv"
   ),
   incomeDictionary
 );
 mainSearchDict.set(
   filepathDictionary.get(
-    "/Users/chloenevas/Documents/mock-cnevas-rgonza27/mock/src/stars.csv"
+    "/Users/chloenevas/Documents/mock-cnevas-rgonza27/mock/src/components/data/stars.csv"
   ),
   starsDictionary
 );

@@ -1,4 +1,3 @@
-//import "../styles/main.css";
 
 interface HistoryProps {
   history: (string | string[][])[];
@@ -20,7 +19,7 @@ export function History(props: HistoryProps) {
           return <p>{entry}</p>;
         } else {
           return (
-            <table>
+              <table>
               <tbody>
                 {entry.map((row) => (
                   <tr>
@@ -30,7 +29,7 @@ export function History(props: HistoryProps) {
                   </tr>
                 ))}
               </tbody>
-            </table>
+            </table>            
           );
         }
       })}

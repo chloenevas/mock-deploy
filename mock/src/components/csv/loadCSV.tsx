@@ -1,4 +1,4 @@
-import { filepathDictionary } from "./mockedJson";
+import { filepathDictionary } from "../data/mockedJson";
 
 /**
  * Takes in a filepath and returns result message along with the

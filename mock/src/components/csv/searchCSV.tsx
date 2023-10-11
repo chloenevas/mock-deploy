@@ -1,4 +1,4 @@
-import { mainSearchDict } from "./mockedJson";
+import { mainSearchDict } from "../data/mockedJson";
 
 /**
  * Searches for a specific value in a CSV data set based on user input.

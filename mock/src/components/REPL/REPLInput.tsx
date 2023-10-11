@@ -4,7 +4,7 @@ import {
   TEXT_input_box,
   TEXT_try_button_accessible_name,
   TEXT_try_button_text,
-} from "./constants";
+} from "../constants";
 import { HandlerClass } from "./Handler";
 
 /**

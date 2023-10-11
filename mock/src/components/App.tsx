@@ -1,6 +1,6 @@
-import REPL from "./REPL";
+import REPL from "./REPL/REPL";
 
-import "./App.css";
+import "../styles/App.css";
 
 /**
  * Top-level application component. Shows the program description and then

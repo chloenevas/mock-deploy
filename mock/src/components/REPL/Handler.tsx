@@ -1,6 +1,6 @@
 import React, { Dispatch, SetStateAction } from "react";
-import { load } from "./loadCSV";
-import { search } from "./searchCSV";
+import { load } from "../csv/loadCSV";
+import { search } from "../csv/searchCSV";
 
 export interface InputProps {
   history: (string | string[][])[];
@@ -116,5 +116,9 @@ export class HandlerClass {
     }
     setHistory([...history, line]);
     scrollHistoryToBottom();
+  }
+
+  getMode(): Boolean {
+    return this.brief;
   }
 }

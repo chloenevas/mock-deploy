@@ -3,7 +3,7 @@ import {
   TEXT_input_box,
   TEXT_try_button_accessible_name,
   TEXT_try_button_text,
-} from "../src/constants";
+} from "../src/components/constants";
 
 /**
   The general shapes of tests in Playwright Test are:
@@ -61,6 +61,7 @@ test("button label is as expected", async ({ page }) => {
 test("after I click the button, my command gets pushed", async ({ page }) => {
   await page.goto("http://localhost:8000/");
   await page.getByRole("button").click();
+  await expect()
   // finish this
   // TODO: Fill this in to test your button push functionality!
 });
