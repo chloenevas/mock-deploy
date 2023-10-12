@@ -28,8 +28,8 @@ export function History(props: HistoryProps) {
               <div>
                 <table>
                   <tbody>
-                    {historyItem.map((row) => (
-                      <tr>
+                    {historyItem.map((row, index) => (
+                      <tr className="row">
                         {row.map((item) => (
                           <td>{item}</td>
                         ))}

@@ -123,7 +123,7 @@ starsRow9.push(
   " -1.81533",
   " 0.14824"
 );
-starsRow10.push("118721", " ''", " -2.28262", " 0.64697", " 0.29354");
+starsRow10.push("118721", "", " -2.28262", " 0.64697", " 0.29354");
 
 starsOutput.push(
   starsRow1,
@@ -146,7 +146,7 @@ filepathDictionary.set(
 // DATA FOR INCOME CSV
 
 // RI in any column
-incomeDictionary.set("ri", incomeOutput);
+incomeDictionary.set("ri", [incomeRow1, incomeRow2, incomeRow3, incomeRow4, incomeRow5, incomeRow6, incomeRow7]);
 
 // RI in the first column (0)
 incomeDictionary.set("0,ri", incomeOutput);
