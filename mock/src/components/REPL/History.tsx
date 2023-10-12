@@ -42,7 +42,7 @@ export function History(props: HistoryProps) {
           } else {
             return (
               <div>
-                <p>Output:</p>
+                <p title="verbose">Output:</p>
                 <table>
                   <tbody>
                     {historyItem.map((row) => (

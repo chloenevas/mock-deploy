@@ -45,9 +45,8 @@ test("button label is as expected", async ({ page }) => {
 
 test("after I click the button, my command gets pushed", async ({ page }) => {
   // await page.goto("http://localhost:8000/");
-  
+  // await page.getByLabel(TEXT_input_box).fill("Awesome command");
   // await page.getByRole("button").click();
   // const output = await page.evaluate();
-
   // expect(output).toBe("No Files Have Been Parsed");
 });
