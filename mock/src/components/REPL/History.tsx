@@ -1,4 +1,4 @@
-interface HistoryProps {
+export interface HistoryProps {
   history: (string | string[][])[];
 }
 
@@ -10,25 +10,25 @@ interface HistoryProps {
  * @param props - HistoryProps that contains the history list
  * @returns - element of history properly formatted
  */
-var breif: boolean = true;
+var brief: boolean = true;
 export function History(props: HistoryProps) {
   return (
     <div className="history">
-      {props.history.map((entry) => {
-        if (typeof entry === "string") {
-          if (entry.includes("Command: ")) {
-            breif = false;
+      {props.history.map((historyItem) => {
+        if (typeof historyItem === "string") {
+          if (historyItem.includes("Command: ")) {
+            brief = false;
           } else {
-            breif = true;
+            brief = true;
           }
-          return <p>{entry}</p>;
+          return <p>{historyItem}</p>;
         } else {
-          if (breif) {
+          if (brief) {
             return (
               <div>
                 <table>
                   <tbody>
-                    {entry.map((row) => (
+                    {historyItem.map((row) => (
                       <tr>
                         {row.map((item) => (
                           <td>{item}</td>
@@ -45,7 +45,7 @@ export function History(props: HistoryProps) {
                 <p>Output:</p>
                 <table>
                   <tbody>
-                    {entry.map((row) => (
+                    {historyItem.map((row) => (
                       <tr>
                         {row.map((item) => (
                           <td>{item}</td>
