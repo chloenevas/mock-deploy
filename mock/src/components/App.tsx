@@ -29,7 +29,7 @@ function App() {
           If you would like to search with no column identifier, simply omit the
           column identifier and enter only the value you'd like to search for
         </div>
-        <div>To retrieve a previous search or result, press the up arrow</div>
+        <div>To retrieve a previous search, press the up arrow</div>
       </div>
       <REPL />
     </div>
