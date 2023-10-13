@@ -586,7 +586,7 @@ test("I can load + search and then repeat with a different file", async ({
   await expect(page.getByRole("row", { name: "0 Sol 0 0 0" })).toBeVisible;
 });
 
-test("I can't search from a different unloaded file (even if it exists in the data)", async ({
+test("I cannot search from a different unloaded file (even if it exists in the data)", async ({
   page,
 }) => {
   await page.getByLabel(TEXT_input_box).click();
@@ -607,6 +607,29 @@ test("I can't search from a different unloaded file (even if it exists in the da
 
   expect(resultText).toContain("Value was not found");
 
+});
+
+
+test("searching for a nonexistent value produces an error", async ({
+  page,
+}) => {
+  await page.getByLabel(TEXT_input_box).click();
+  await page
+    .getByLabel(TEXT_input_box)
+    .fill(
+      "load_file /Users/chloenevas/Documents/mock-cnevas-rgonza27/mock/src/components/data/income.csv"
+    );
+  await page.getByRole("button").click();
+  await page.getByLabel(TEXT_input_box).click();
+  await page.getByLabel(TEXT_input_box).fill("search happiness");
+  await page.getByRole("button").click();
+
+  const resultText = await page.evaluate(() => {
+    // gets first element that matches .historySpace
+    return document.querySelector(".historySpace")?.textContent;
+  });
+
+  expect(resultText).toContain("Value was not found");
 });
 
 test("Searching a single column csv produces the expected result", async ({
