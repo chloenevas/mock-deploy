@@ -1,4 +1,6 @@
 import { mainSearchDict } from "../data/mockedJson";
+import { filepathDictionary } from "../data/mockedJson";
+
 
 /**
  * Searches for a specific value in a CSV data set based on user input.
@@ -13,6 +15,9 @@ export function search(input: string, data: string) {
   // Create an array containing the header & search value - split it based on
   // where there are quotations so that two-word headers or entries can be used
   // when surrounded by quotes
+
+  // credit for regex:
+  // https://stackoverflow.com/questions/16261635/javascript-split-string-by-space-but-ignore-space-in-quotes-notice-not-to-spli
   const matches = search.match(/(".*?"|[^"\s]+)+(?=\s*|\s*$)/g);
 
   if (matches !== null) {

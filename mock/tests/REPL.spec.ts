@@ -13,8 +13,8 @@ test.beforeEach(async ({ page }) => {
 test("trying to view without loading a file produces an error", async ({
   page,
 }) => {
-  await page.getByLabel(TEXT_input_box).click();
-  await page.getByLabel(TEXT_input_box).fill("view");
+  await page.getByLabel('enter command').click();
+  await page.getByLabel('enter command').fill("view");
   await page.getByRole("button").click();
   await page.waitForSelector(".historySpace");
   const output = await page.evaluate(() => {
@@ -44,7 +44,7 @@ test("after loading a valid file, the response is success", async ({
   expect(resultText).toBe("success!");
 });
 
-test("after loading an invalid file, the response is faliur", async ({
+test("after loading an invalid file, the response is failure", async ({
   page,
 }) => {
   await page.getByLabel(TEXT_input_box).click();
@@ -91,7 +91,7 @@ test("trying to view without loading a file and then loading one and calling vie
   expect(output).not.toBe("No Files Have Been Parsed");
 });
 
-test("verbose: trying to view without loading a file and then loading one and calling breif: view", async ({
+test("verbose: trying to view without loading a file and then loading one and calling brief: view", async ({
   page,
 }) => {
   await page.getByLabel(TEXT_input_box).click();
@@ -128,8 +128,8 @@ test("verbose: trying to view without loading a file and then loading one and ca
 });
 
 test("trying to search without loading a file", async ({ page }) => {
-  await page.getByLabel(TEXT_input_box).click();
-  await page.getByLabel(TEXT_input_box).fill("search white");
+  await page.getByLabel('enter command').click();
+  await page.getByLabel('enter command').fill("search white");
   await page.getByRole("button").click();
   await page.waitForSelector(".historySpace");
   var output = await page.evaluate(() => {
@@ -142,7 +142,7 @@ test("trying to search without loading a file", async ({ page }) => {
 test("trying to search without loading a file and then loading one and calling search", async ({
   page,
 }) => {
-  await page.getByLabel(TEXT_input_box).click();
+  await page.getByLabel('enter command').click();
   await page.getByLabel(TEXT_input_box).fill("search white");
   await page.getByRole("button").click();
   await page.waitForSelector(".historySpace");
@@ -152,9 +152,9 @@ test("trying to search without loading a file and then loading one and calling s
 
   expect(output).toBe("Please Load a File First!");
 
-  await page.getByLabel(TEXT_input_box).click();
+  await page.getByLabel("enter command").click();
   await page
-    .getByLabel(TEXT_input_box)
+    .getByLabel("enter command")
     .fill(
       "load_file /Users/chloenevas/Documents/mock-cnevas-rgonza27/mock/src/components/data/income.csv"
     );
@@ -178,8 +178,8 @@ test("trying to search without loading a file and then loading one and calling s
 test("verbose, trying to search without loading a file and then loading one and calling search", async ({
   page,
 }) => {
-  await page.getByLabel(TEXT_input_box).click();
-  await page.getByLabel(TEXT_input_box).fill("search white");
+  await page.getByLabel('enter command').click();
+  await page.getByLabel("enter command").fill("search white");
   await page.getByRole("button").click();
   await page.waitForSelector(".historySpace");
   var output = await page.evaluate(() => {
@@ -188,9 +188,9 @@ test("verbose, trying to search without loading a file and then loading one and 
 
   expect(output).toBe("Please Load a File First!");
 
-  await page.getByLabel(TEXT_input_box).click();
+  await page.getByLabel('enter command').click();
   await page
-    .getByLabel(TEXT_input_box)
+    .getByLabel("enter command")
     .fill(
       "load_file /Users/chloenevas/Documents/mock-cnevas-rgonza27/mock/src/components/data/income.csv"
     );
@@ -328,13 +328,13 @@ test("if I search an index bigger than the number of header elements", async ({
     );
   await page.getByRole("button").click();
   await page.getByLabel(TEXT_input_box).click();
-  await page.getByLabel(TEXT_input_box).fill("search 33 RI");
+  await page.getByLabel(TEXT_input_box).fill("search 10 RI");
   await page.getByRole("button").click();
 
   var output = await page.evaluate(() => {
     return document.querySelector(".historySpace")?.textContent;
   });
-  expect(output).toContain("Value was not found");
+  expect(output).toContain("Column index out of bounds");
 });
 
 test("if I search with a negative index I get an error", async ({ page }) => {
@@ -352,7 +352,7 @@ test("if I search with a negative index I get an error", async ({ page }) => {
   var output = await page.evaluate(() => {
     return document.querySelector(".historySpace")?.textContent;
   });
-  expect(output).toContain("Value was not found");
+  expect(output).toContain("Column index out of bounds");
 });
 
 test("if I load a file with a header and then view, I get the correct table", async ({
@@ -513,3 +513,118 @@ test("if I load a file without a header and call mode, then view, I get the corr
   ).toBeVisible;
   await expect(page.getByTitle("verbose").getByText("Output:")).toBeVisible();
 });
+
+test("I can load + view and then repeat with a different file", async ({
+  page,
+}) => {
+  await page.getByLabel(TEXT_input_box).click();
+  await page
+    .getByLabel(TEXT_input_box)
+    .fill(
+      "load_file /Users/chloenevas/Documents/mock-cnevas-rgonza27/mock/src/components/data/income.csv"
+    );
+  await page.getByRole("button").click();
+  await page.getByLabel(TEXT_input_box).click();
+  await page.getByLabel(TEXT_input_box).fill("view");
+  await page.getByRole("button").click();
+
+  await expect(
+    page.getByRole("row", {
+      name: "State Data Type Average Weekly Earnings Number of Workers Earnings Disparity Employed Percent",
+    })
+  ).toBeVisible();
+
+  await page.getByLabel(TEXT_input_box).click();
+  await page
+    .getByLabel(TEXT_input_box)
+    .fill(
+      "load_file /Users/chloenevas/Documents/mock-cnevas-rgonza27/mock/src/components/data/stars.csv"
+    );
+  await page.getByRole("button").click();
+  await page.getByLabel(TEXT_input_box).click();
+  await page.getByLabel(TEXT_input_box).fill("view");
+  await page.getByRole("button").click();
+
+  await expect(page.getByRole("row", { name: "0 Sol 0 0 0" })).toBeVisible;
+});
+
+
+test("I can load + search and then repeat with a different file", async ({
+  page,
+}) => {
+  await page.getByLabel(TEXT_input_box).click();
+  await page
+    .getByLabel(TEXT_input_box)
+    .fill(
+      "load_file /Users/chloenevas/Documents/mock-cnevas-rgonza27/mock/src/components/data/income.csv"
+    );
+  await page.getByRole("button").click();
+  await page.getByLabel(TEXT_input_box).click();
+  await page.getByLabel(TEXT_input_box).fill("search 1 white");
+  await page.getByRole("button").click();
+
+   await expect(page.getByRole("cell", { name: "ri" })).toBeVisible();
+   await expect(page.getByRole("cell", { name: "white" })).toBeVisible();
+   await expect(
+     page.getByRole("cell", { name: '" $1,058.47 "' })
+   ).toBeVisible();
+   await expect(page.getByRole("cell", { name: "395773.6521" })).toBeVisible();
+   await expect(page.getByRole("cell", { name: "$1.00" })).toBeVisible();
+   await expect(page.getByRole("cell", { name: "75%" })).toBeVisible();
+
+  await page.getByLabel(TEXT_input_box).click();
+  await page
+    .getByLabel(TEXT_input_box)
+    .fill(
+      "load_file /Users/chloenevas/Documents/mock-cnevas-rgonza27/mock/src/components/data/stars.csv"
+    );
+  await page.getByRole("button").click();
+  await page.getByLabel(TEXT_input_box).click();
+  await page.getByLabel(TEXT_input_box).fill("search 2 0");
+  await page.getByRole("button").click();
+
+  await expect(page.getByRole("row", { name: "0 Sol 0 0 0" })).toBeVisible;
+});
+
+test("I can't search from a different unloaded file (even if it exists in the data)", async ({
+  page,
+}) => {
+  await page.getByLabel(TEXT_input_box).click();
+  await page
+    .getByLabel(TEXT_input_box)
+    .fill(
+      "load_file /Users/chloenevas/Documents/mock-cnevas-rgonza27/mock/src/components/data/income.csv"
+    );
+  await page.getByRole("button").click();
+  await page.getByLabel(TEXT_input_box).click();
+  await page.getByLabel(TEXT_input_box).fill("search 2 0");
+  await page.getByRole("button").click();
+
+  const resultText = await page.evaluate(() => {
+    // gets first element that matches .historySpace
+    return document.querySelector(".historySpace")?.textContent;
+  });
+
+  expect(resultText).toContain("Value was not found");
+
+});
+
+test("Searching a single column csv produces the expected result", async ({
+  page,
+}) => {
+  await page.getByLabel(TEXT_input_box).click();
+  await page
+    .getByLabel(TEXT_input_box)
+    .fill(
+      "load_file /Users/chloenevas/Documents/mock-cnevas-rgonza27/mock/src/components/data/singleColumn.csv"
+    );
+  await page.getByRole("button").click();
+  await page.getByLabel(TEXT_input_box).click();
+  await page.getByLabel(TEXT_input_box).fill("search this");
+  await page.getByRole("button").click();
+
+   await expect(page.getByRole("cell", { name: "this" })).toBeVisible();
+});
+
+
+

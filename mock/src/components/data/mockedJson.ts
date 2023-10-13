@@ -1,6 +1,7 @@
 export const filepathDictionary = new Map<string, any>();
-export const incomeDictionary = new Map<string, string[][]>();
-export const starsDictionary = new Map<string, string[][]>();
+export const incomeDictionary = new Map<string, string[][] | string>();
+export const starsDictionary = new Map<string, string[][] | string>();
+export const singleHeaderDictionary = new Map<string, string[][] | string>();
 export const mainSearchDict = new Map<string, Map<string, any>>();
 
 // INCOME CSV SETUP
@@ -138,11 +139,38 @@ starsOutput.push(
   starsRow10
 );
 
+// STARS CSV SETUP
+
 filepathDictionary.set(
   "/Users/chloenevas/Documents/mock-cnevas-rgonza27/mock/src/components/data/stars.csv",
   starsOutput
 );
 
+var singleOutput: string[][] = new Array();
+var row1single: string[] = new Array();
+row1single.push('header');
+var row2single: string[] = new Array();
+row2single.push("this");
+var row3single: string[] = new Array();
+row3single.push("is");
+var row4single: string[] = new Array();
+row4single.push("the");
+var row5single: string[] = new Array();
+row5single.push("csv");
+var row6single: string[] = new Array();
+row6single.push("file");
+
+singleOutput.push(
+  row1single,
+  row2single,
+  row3single,
+  row4single,
+  row5single,
+  row6single
+);
+
+filepathDictionary.set("/Users/chloenevas/Documents/mock-cnevas-rgonza27/mock/src/components/data/singleColumn.csv",
+  singleOutput)
 // DATA FOR INCOME CSV
 
 // RI in any column
@@ -154,6 +182,11 @@ incomeDictionary.set("0,ri", incomeOutput);
 // RI in the first column (State)
 incomeDictionary.set("state,ri", incomeOutput);
 
+// RI in column out of bounds
+incomeDictionary.set("10,ri", "Column index out of bounds");
+incomeDictionary.set("-1,ri", "Column index out of bounds");
+
+
 // White in any column
 incomeDictionary.set("white", [incomeRow2]);
 
@@ -162,6 +195,7 @@ incomeDictionary.set("1,white", [incomeRow2]);
 
 // White in the second column (Data Type)
 incomeDictionary.set("data type,white", [incomeRow2]);
+
 
 // DATA FOR STARS CSV
 
@@ -177,6 +211,10 @@ starsDictionary.set("0", [starsRow1]);
 // 0 in third column
 starsDictionary.set("2,0", [starsRow1]);
 
+// DATA FOR SINGLE COLUMN CSV
+
+singleHeaderDictionary.set('this', [row2single])
+
 // sets up mainSearchDict which maps the filepath dictionaries to their results
 mainSearchDict.set(
   filepathDictionary.get(
@@ -184,9 +222,19 @@ mainSearchDict.set(
   ),
   incomeDictionary
 );
+
+
 mainSearchDict.set(
   filepathDictionary.get(
     "/Users/chloenevas/Documents/mock-cnevas-rgonza27/mock/src/components/data/stars.csv"
   ),
   starsDictionary
 );
+
+mainSearchDict.set(
+  filepathDictionary.get(
+    "/Users/chloenevas/Documents/mock-cnevas-rgonza27/mock/src/components/data/singleColumn.csv"
+  ), singleHeaderDictionary
+);
+
+
