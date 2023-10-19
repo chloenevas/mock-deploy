@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/mock-deployedCS32/static/css/main.073c9b0a.css",
-    "main.js": "/mock-deployedCS32/static/js/main.1ae11cb9.js",
-    "static/js/787.28cb0dcd.chunk.js": "/mock-deployedCS32/static/js/787.28cb0dcd.chunk.js",
-    "static/media/logo.svg": "/mock-deployedCS32/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
-    "index.html": "/mock-deployedCS32/index.html",
-    "main.073c9b0a.css.map": "/mock-deployedCS32/static/css/main.073c9b0a.css.map",
-    "main.1ae11cb9.js.map": "/mock-deployedCS32/static/js/main.1ae11cb9.js.map",
-    "787.28cb0dcd.chunk.js.map": "/mock-deployedCS32/static/js/787.28cb0dcd.chunk.js.map"
+    "main.css": "/chloenevas/mock-deploy/static/css/main.073c9b0a.css",
+    "main.js": "/chloenevas/mock-deploy/static/js/main.2efc48bc.js",
+    "static/js/787.28cb0dcd.chunk.js": "/chloenevas/mock-deploy/static/js/787.28cb0dcd.chunk.js",
+    "static/media/logo.svg": "/chloenevas/mock-deploy/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
+    "index.html": "/chloenevas/mock-deploy/index.html",
+    "main.073c9b0a.css.map": "/chloenevas/mock-deploy/static/css/main.073c9b0a.css.map",
+    "main.2efc48bc.js.map": "/chloenevas/mock-deploy/static/js/main.2efc48bc.js.map",
+    "787.28cb0dcd.chunk.js.map": "/chloenevas/mock-deploy/static/js/787.28cb0dcd.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.073c9b0a.css",
-    "static/js/main.1ae11cb9.js"
+    "static/js/main.2efc48bc.js"
   ]
 }
